@@ -5,8 +5,6 @@
   |============================
 */
 @import url('./reset.css');
-@import url('./vite-promo.css');
-@import url('./header.css');
 @import url('./pixabay-api.css');
 @import url('./render-functions.css');
 
@@ -63,5 +61,8 @@
   align-items: center;
 }
 .hidden {
+  display: none;
+}
+.load-hidden {
   display: none;
 }

@@ -1,0 +1,68 @@
+.section-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 32px 0;
+}
+.input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  border-radius: 4px;
+  width: 272px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  padding: 0 16px;
+  outline: transparent;
+}
+.input:hover,
+.input:focus {
+  border: 1px solid #000;
+}
+.input:active {
+  border: 1px solid #4e75ff;
+}
+.button {
+  border-radius: 8px;
+  border: none;
+  padding: 8px 16px;
+  height: 40px;
+  background: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+.button :hover {
+  background: #6c8cff;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px 24px;
+  justify-content: center;
+  align-items: center;
+}
+.gallery-item {
+  width: calc((100% - 72px) / 3);
+  border: 1px solid #808080;
+  background: #ffffff;
+}
+.gallery-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.25s;
+}
+
+.sl-wrapper.simple-lightbox > .sl-counter,
+.sl-wrapper.simple-lightbox .sl-navigation button,
+.sl-wrapper.simple-lightbox .sl-close {
+  color: #fff !important;
+}
+
+.sl-wrapper.simple-lightbox {
+  background-color: #2e2f42cc !important;
+}
