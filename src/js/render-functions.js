@@ -1,7 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
-import { refs } from '../main';
 import iziToast from 'izitoast';
+import { refs } from './refs';
 
 export let markup = '';
 export async function imagesTemplate(imagesObj) {
@@ -59,8 +59,8 @@ export function hideLoadMore() {
   refs.loadMoreBtn.classList.add('hidden');
 }
 
-export function btnStatus(currentPage, maxPage) {
-  if (page >= maxPage) {
+export function checkEndPages(currentPage, maxPage) {
+  if (currentPage > maxPage) {
     hideLoadMore();
 
     if (maxPage) {

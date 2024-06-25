@@ -7,17 +7,9 @@ import {
   hideLoader,
   showLoadMore,
   hideLoadMore,
-  btnStatus,
+  checkEndPages,
 } from './js/render-functions';
-
-export const refs = {
-  form: document.querySelector('.form'),
-  input: document.querySelector('.input'),
-  button: document.querySelector('button'),
-  gallery: document.querySelector('.gallery'),
-  loader: document.querySelector('.loader'),
-  loadMoreBtn: document.querySelector('.load-more-btn'),
-};
+import { refs } from './js/refs';
 
 export let inputValue = '';
 export let currentPage = 1;
@@ -32,6 +24,8 @@ refs.form.addEventListener('submit', async e => {
     inputValue = e.target.elements.text.value.trim();
     let currentPage = 1;
 
+    hideLoadMore();
+
     if (inputValue === '') {
       refs.gallery.innerHTML = ' ';
       iziToast.warning({
@@ -45,27 +39,12 @@ refs.form.addEventListener('submit', async e => {
       return;
     }
     showLoader();
-    refs.gallery.innerHTML = ' ';
+    refs.gallery.innerHTML = ' '; // прибирає картки від попереднбого запиту
 
     const data = await getImages(inputValue, currentPage, perPage);
     maxPage = Math.ceil(data.totalHits / perPage);
 
     if (maxPage === 0) {
-      iziToast.error({
-        title: 'Error',
-        message: 'Empty result',
-        layout: 2,
-        displayMode: 'once',
-        backgroundColor: '#ef4040',
-        progressBarColor: '#B51B1B',
-        position: 'topRight',
-      });
-      hideLoader();
-      btnStatus(currentPage, maxPage);
-      return;
-    }
-
-    if (data.hits.length === 0) {
       iziToast.error({
         message:
           'Sorry, there are no images matching your search query. Please try again!',
@@ -76,9 +55,24 @@ refs.form.addEventListener('submit', async e => {
         position: 'topRight',
       });
       hideLoader();
-      refs.form.reset();
+      // checkEndPages(currentPage, maxPage);
       return;
     }
+
+    // if (data.hits.length === 0) {
+    //   iziToast.error({
+    //     message:
+    //       'Sorry, there are no images matching your search query. Please try again!',
+    //     layout: 2,
+    //     displayMode: 'once',
+    //     backgroundColor: '#ef4040',
+    //     progressBarColor: '#B51B1B',
+    //     position: 'topRight',
+    //   });
+    //   hideLoader();
+    //   refs.form.reset();
+    //   return;
+    // }
     hideLoader();
     refs.form.reset();
 
@@ -100,26 +94,17 @@ refs.form.addEventListener('submit', async e => {
 
 refs.loadMoreBtn.addEventListener('click', async () => {
   try {
-    currentPage++;
     hideLoadMore();
     showLoader();
-    const data = await getImages(inputValue, currentPage, perPage);
 
-    if (data.hits.length === 0) {
-      iziToast.error({
-        message:
-          'Sorry, there are no images matching your search query. Please try again!',
-        layout: 2,
-        displayMode: 'once',
-        backgroundColor: '#ef4040',
-        progressBarColor: '#B51B1B',
-        position: 'topRight',
-      });
+    const data = await getImages(inputValue, currentPage, perPage);
+    if (data.hits.length !== 0) {
+      imagesTemplate(data.hits);
+
       hideLoader();
-      refs.form.reset();
-      return;
+      currentPage++;
     }
-    imagesTemplate(data.hits);
+    checkEndPages(currentPage, maxPage);
   } catch (error) {
     refs.gallery.innerHTML = ' ';
 
