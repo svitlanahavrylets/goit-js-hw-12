@@ -23,7 +23,8 @@
 .input:active {
   border: 1px solid #4e75ff;
 }
-.button {
+.button,
+.load-more-btn {
   border-radius: 8px;
   border: none;
   padding: 8px 16px;
@@ -35,7 +36,8 @@
   letter-spacing: 0.04em;
   color: #fff;
 }
-.button :hover {
+.button:hover,
+.load-more-btn {
   background: #6c8cff;
 }
 .gallery {

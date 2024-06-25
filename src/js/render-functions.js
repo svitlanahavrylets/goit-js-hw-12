@@ -1,6 +1,7 @@
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import { refs } from '../main';
+import iziToast from 'izitoast';
 
 export let markup = '';
 export async function imagesTemplate(imagesObj) {
@@ -39,12 +40,26 @@ export function hideLoader() {
   refs.loader.classList.add('hidden');
 }
 export function showLoadMore() {
-  refs.loader.classList.remove('load-more-hidden');
+  refs.loadMoreBtn.classList.remove('hidden');
 }
 export function hideLoadMore() {
-  refs.loader.classList.add('load-more-hidden');
+  refs.loadMoreBtn.classList.add('hidden');
 }
 
+export function btnStatus(currentPage, maxPage) {
+  if (page >= maxPage) {
+    hideLoadMore();
+
+    if (maxPage) {
+      iziToast.info({
+        title: 'The end!',
+        message: "We're sorry, but you've reached the end of search results.",
+      });
+    }
+  } else {
+    showLoadMore();
+  }
+}
 //    <ul class="property">
 //      <li class="property-item">
 //        <p class="property-name">Likes</p>

@@ -63,6 +63,9 @@
 .hidden {
   display: none;
 }
-.load-hidden {
-  display: none;
+
+.div-btn-load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

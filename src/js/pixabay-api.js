@@ -7,7 +7,7 @@ const articlesApi = axios.create({
   baseURL: 'https://pixabay.com/',
 });
 
-export async function getImages(inputValue, currentPage) {
+export async function getImages(inputValue, currentPage, perPage) {
   try {
     const params = {
       key: '44427326-e2b4a6eb28305d60c68b186c8',
@@ -16,7 +16,7 @@ export async function getImages(inputValue, currentPage) {
       orientation: 'horizontal',
       safesearch: true,
       page: currentPage,
-      per_page: 15,
+      per_page: perPage,
     };
 
     const res = await articlesApi.get('api/', { params });
