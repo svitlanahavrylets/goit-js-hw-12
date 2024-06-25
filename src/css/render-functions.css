@@ -40,6 +40,9 @@
 .load-more-btn {
   background: #6c8cff;
 }
+.load-more-btn {
+  margin: 32px 0;
+}
 .gallery {
   display: flex;
   flex-wrap: wrap;

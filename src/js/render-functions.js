@@ -14,12 +14,25 @@ export async function imagesTemplate(imagesObj) {
       src="${image.webformatURL}"
       alt="${image.tags}"/>
       </a> 
-<div class="gallery-card-container">
-<p><strong>Likes:</strong> ${image.likes}</p>
-<p><strong>Views:</strong> ${image.views}</p>
-<p><strong>Comments:</strong> ${image.comments}</p>
-<p><strong>Downloads:</strong> ${image.downloads}</p>
-<p><strong>Likes:</strong> ${image.likes}</p>
+<div class="text-card-container">
+   <ul class="text-list">
+     <li class="text-item">
+       <p class="text-item-name">Likes</p>
+       <p class="text-item-quantity">${image.likes}</p>
+     </li>
+     <li class="text-item">
+       <p class="text-item-name">Views</p>
+       <p class="text-item-quantity">${image.views}</p>
+     </li>
+     <li class="text-item">
+       <p class="text-item-name">Comments</p>
+       <p class="text-item-quantity">${image.comments}</p>
+     </li>
+     <li class="text-item">
+       <p class="text-item-name">Downloads</p>
+       <p class="text-item-quantity">${image.downloads}</p>
+     </li>
+   </ul>
 </div>
 </li>`;
     })
@@ -60,21 +73,3 @@ export function btnStatus(currentPage, maxPage) {
     showLoadMore();
   }
 }
-//    <ul class="property">
-//      <li class="property-item">
-//        <p class="property-name">Likes</p>
-//        <p class="item-prop-quantity">${image.likes}</p>
-//      </li>
-//      <li class="property-item">
-//        <p class="property-name">Views</p>
-//        <p class="item-prop-quantity">${image.views}</p>
-//      </li>
-//      <li class="property-item">
-//        <p class="property-name">Comments</p>
-//        <p class="item-prop-quantity">${image.comments}</p>
-//      </li>
-//      <li class="property-item">
-//        <p class="property-name">Downloads</p>
-//        <p class="item-prop-quantity">${image.downloads}</p>
-//      </li>
-//    </ul>;

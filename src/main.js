@@ -115,8 +115,8 @@ refs.loadMoreBtn.addEventListener('click', async () => {
         progressBarColor: '#B51B1B',
         position: 'topRight',
       });
-      //  hideLoader();
-      //  refs.form.reset();
+      hideLoader();
+      refs.form.reset();
       return;
     }
     imagesTemplate(data.hits);
