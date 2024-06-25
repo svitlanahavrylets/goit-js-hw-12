@@ -10,6 +10,7 @@ import {
   checkEndPages,
 } from './js/render-functions';
 import { refs } from './js/refs';
+import { skipOldElement } from './js/scroll';
 
 let inputValue = '';
 let currentPage = 1;
@@ -33,6 +34,7 @@ refs.form.addEventListener('submit', async e => {
       position: 'topRight',
       displayMode: 'once',
     });
+    refs.form.reset();
     return;
   }
 
@@ -53,6 +55,7 @@ refs.form.addEventListener('submit', async e => {
         progressBarColor: '#B51B1B',
         position: 'topRight',
       });
+      refs.form.reset();
       hideLoader();
       return;
     }
@@ -89,6 +92,7 @@ refs.loadMoreBtn.addEventListener('click', async () => {
       currentPage++;
     }
     checkEndPages(currentPage, maxPage);
+    skipOldElement();
   } catch (error) {
     refs.gallery.innerHTML = ' ';
 
