@@ -84,9 +84,11 @@ refs.loadMoreBtn.addEventListener('click', async () => {
   showLoader();
 
   try {
+    currentPage++;
+
     const data = await getImages(inputValue, currentPage, perPage);
+
     if (data.hits.length !== 0) {
-      currentPage++;
       imagesTemplate(data.hits);
 
       hideLoader();

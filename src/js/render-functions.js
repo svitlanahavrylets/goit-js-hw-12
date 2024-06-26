@@ -60,7 +60,7 @@ export function hideLoadMore() {
 }
 
 export function checkEndPages(currentPage, maxPage) {
-  if (currentPage > maxPage) {
+  if (currentPage >= maxPage) {
     hideLoadMore();
 
     if (maxPage) {
