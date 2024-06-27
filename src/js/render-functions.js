@@ -1,5 +1,3 @@
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import { refs } from './refs';
 
@@ -38,12 +36,6 @@ export async function imagesTemplate(imagesObj) {
     })
     .join('');
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captions: true,
-    captionsData: 'alt',
-    captionDelay: 250,
-  }).refresh();
 }
 
 export function showLoader() {

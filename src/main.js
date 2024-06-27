@@ -1,3 +1,5 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { getImages } from './js/pixabay-api';
@@ -17,10 +19,16 @@ let currentPage = 1;
 let perPage = 15;
 let maxPage = 1;
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captions: true,
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 refs.form.addEventListener('submit', async e => {
   e.preventDefault();
   inputValue = e.target.elements.text.value.trim();
-  let currentPage = 1;
+  currentPage = 1;
 
   hideLoadMore();
 
@@ -64,7 +72,7 @@ refs.form.addEventListener('submit', async e => {
     refs.form.reset();
 
     imagesTemplate(data.hits);
-
+    lightbox.refresh();
     showLoadMore();
   } catch (error) {
     iziToast.error({
@@ -84,13 +92,14 @@ refs.loadMoreBtn.addEventListener('click', async () => {
   showLoader();
 
   try {
+    // currentPage = 1;
     currentPage++;
 
     const data = await getImages(inputValue, currentPage, perPage);
 
     if (data.hits.length !== 0) {
       imagesTemplate(data.hits);
-
+      lightbox.refresh();
       hideLoader();
     }
     checkEndPages(currentPage, maxPage);
