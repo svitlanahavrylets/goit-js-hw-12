@@ -92,7 +92,6 @@ refs.loadMoreBtn.addEventListener('click', async () => {
   showLoader();
 
   try {
-    // currentPage = 1;
     currentPage++;
 
     const data = await getImages(inputValue, currentPage, perPage);
